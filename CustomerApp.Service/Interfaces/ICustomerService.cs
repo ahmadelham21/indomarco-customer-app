@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomerApp.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace CustomerApp.Service.Interfaces
     public interface ICustomerService
     {
 
-        Object getData();
+        Task CreateCustomer(Customer customer);
+        Task<IEnumerable<Customer>?> GetAllCustomer();
     }
 }

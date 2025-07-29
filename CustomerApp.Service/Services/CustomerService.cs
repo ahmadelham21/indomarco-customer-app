@@ -1,4 +1,5 @@
-﻿using CustomerApp.Repository.Interfaces;
+﻿using CustomerApp.Domain.Entities;
+using CustomerApp.Repository.Interfaces;
 using CustomerApp.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,17 @@ namespace CustomerApp.Service.Services
             this._customerRepository = customerRepository;
         }
 
-        public object getData()
+        public async Task CreateCustomer(Customer customer)
         {
-           return _customerRepository.getData();
+            
+
+            await _customerRepository.AddCustomer(customer);
+        
+        }
+
+        public async Task<IEnumerable<Customer>?> GetAllCustomer()
+        {
+            return await _customerRepository.FindAllCustomer();
         }
     }
 }

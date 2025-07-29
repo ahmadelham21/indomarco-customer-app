@@ -1,7 +1,9 @@
+using CustomerApp.Repository;
 using CustomerApp.Repository.Interfaces;
 using CustomerApp.Repository.Repositories;
 using CustomerApp.Service.Interfaces;
 using CustomerApp.Service.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 
+
+//untuk db connect
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 var app = builder.Build();
 

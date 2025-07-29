@@ -1,9 +1,8 @@
 ﻿namespace CustomerApp.API.Dto.Responses
 {
-    public class CommonResponse <T>
+    public class CommonResponse 
     {
         public string? Message { get; set; }
         public int? StatusCode { get; set; }
-        public T? Data { get; set; }
     }
 }

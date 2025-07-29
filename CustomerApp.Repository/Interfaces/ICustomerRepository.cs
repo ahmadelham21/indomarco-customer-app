@@ -9,6 +9,7 @@ namespace CustomerApp.Repository.Interfaces
 {
     public interface ICustomerRepository
     {
-        Customer getData();
+        Task AddCustomer(Customer customer);
+        Task<IEnumerable<Customer>?> FindAllCustomer();
     }
 }
