@@ -4,5 +4,7 @@
     {
         public string? Message { get; set; }
         public int? StatusCode { get; set; }
+
+        public string? TransactionId { get; set; }
     }
 }

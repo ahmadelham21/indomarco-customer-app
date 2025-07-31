@@ -12,5 +12,11 @@ namespace CustomerApp.Service.Interfaces
 
         Task CreateCustomer(Customer customer);
         Task<IEnumerable<Customer>?> GetAllCustomer();
+
+        Task<Customer> GetByIdCustomer(int id);
+
+        Task UpdateCustomer(Customer customer);
+        Task DeleteCustomerById(int id);
+   
     }
 }

@@ -11,5 +11,12 @@ namespace CustomerApp.Repository.Interfaces
     {
         Task AddCustomer(Customer customer);
         Task<IEnumerable<Customer>?> FindAllCustomer();
+
+        Task<Customer> GetByIdCustomer(int id);
+
+        Task UpdateCustomer(Customer customer);
+        Task DeleteCustomerById(Customer customer);
+
+        Task<bool> CustomerIdIsExist(int customerId);
     }
 }
