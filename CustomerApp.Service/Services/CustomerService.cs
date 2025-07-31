@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Domain.Entities;
+using CustomerApp.Domain.Exceptions;
 using CustomerApp.Repository.Interfaces;
 using CustomerApp.Service.Interfaces;
 using System;
@@ -19,8 +20,8 @@ namespace CustomerApp.Service.Services
 
         public async Task CreateCustomer(Customer customer)
         {
-            if (await _customerRepository.CustomerIdIsExist(customer.CustomerId))
-                throw new Exception("Customer already exists");
+            if (await _customerRepository.CustomerCodeIsExist(customer.CustomerCode))
+                throw new AlreadyExistsException("Customer",customer.CustomerCode);
 
             await _customerRepository.AddCustomer(customer);
         
@@ -35,17 +36,17 @@ namespace CustomerApp.Service.Services
 
         public async Task<IEnumerable<Customer>?> GetAllCustomer()
         {
-            return await _customerRepository.FindAllCustomer();
+            return await _customerRepository.FindAllCustomer() ?? throw new NotFoundException();
         }
 
         public async Task<Customer> GetByIdCustomer(int id)
         {
-            return await _customerRepository.GetByIdCustomer(id) ?? throw new Exception("Customer Not Found");
+            return await _customerRepository.GetByIdCustomer(id) ?? throw new NotFoundException("Customer",id);
         }
 
         public async Task UpdateCustomer(Customer customer)
         {
-            Customer customerToUpdate = await _customerRepository.GetByIdCustomer(customer.CustomerId) ?? throw new Exception("Customer Not Found");
+            Customer customerToUpdate = await _customerRepository.GetByIdCustomer(customer.CustomerId) ?? throw new NotFoundException("Customer", customer.CustomerId);
             customerToUpdate.CustomerName = customer.CustomerName;
             customerToUpdate.CustomerAddress = customer.CustomerAddress;
             customerToUpdate.CustomerCode = customer.CustomerCode;

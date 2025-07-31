@@ -17,6 +17,6 @@ namespace CustomerApp.Repository.Interfaces
         Task UpdateCustomer(Customer customer);
         Task DeleteCustomerById(Customer customer);
 
-        Task<bool> CustomerIdIsExist(int customerId);
+        Task<bool> CustomerCodeIsExist(string customerCode);
     }
 }

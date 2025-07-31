@@ -57,10 +57,10 @@ namespace CustomerApp.Repository.Repositories
         }
 
 
-        public async Task<bool> CustomerIdIsExist(int customerId)
+        public async Task<bool> CustomerCodeIsExist(string customerCode)
         {
             return await _context.Customers
-                .AnyAsync(c => c.CustomerId == customerId);
+                .AnyAsync(c => c.CustomerCode == customerCode);
         }
     }
 }

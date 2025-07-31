@@ -11,7 +11,7 @@ using System.Net;
 namespace CustomerApp.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/v1/[controller]")]
     public class CustomerController : ControllerBase
     {
 

@@ -4,3 +4,6 @@ GET {{CustomerApp.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+### Get customer by id
+GET {{CustomerApp.API_HostAddress}}/api/v1/Customer/GetCustomerById/1
+Accept: application/json

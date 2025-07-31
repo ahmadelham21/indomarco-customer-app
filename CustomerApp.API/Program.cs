@@ -33,7 +33,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//handle middlware
 app.UseMiddleware<TransactionIdMiddleware>();
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
