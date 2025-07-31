@@ -4,6 +4,7 @@ using CustomerApp.Repository.Interfaces;
 using CustomerApp.Repository.Repositories;
 using CustomerApp.Service.Interfaces;
 using CustomerApp.Service.Services;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 
 namespace CustomerApp.API.Extensions
@@ -18,13 +19,9 @@ namespace CustomerApp.API.Extensions
             services.AddScoped<ICustomerService, CustomerService>();
 
 
-        
 
 
-            //db config
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql(connectionString));
+ 
         }
     }
 }
