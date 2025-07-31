@@ -1,3 +1,5 @@
+using CustomerApp.API.Extensions;
+using CustomerApp.API.Middlewares;
 using CustomerApp.Repository;
 using CustomerApp.Repository.Interfaces;
 using CustomerApp.Repository.Repositories;
@@ -16,18 +18,11 @@ builder.Services.AddSwaggerGen();
 
 
 
+// Memanggil Extension
+builder.Services.ConfigureServices(builder.Configuration);
 
-//untuk Dependency injection
+//register middleware
 
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<ICustomerService, CustomerService>();
-
-
-//untuk db connect
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
 
 var app = builder.Build();
 
@@ -37,6 +32,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<TransactionIdMiddleware>();
 
 app.UseHttpsRedirection();
 

@@ -27,6 +27,8 @@ namespace CustomerApp.API.Controllers
         public async Task<IActionResult> CreateCustomer([FromBody]CreateCustomerRequest request) { 
             
             CommonResponse response = new CommonResponse();
+            var transactionId = HttpContext.Items["TransactionId"]?.ToString();
+
 
             Customer customer = new Customer();
             customer.CustomerName = request.CustomerName;
@@ -39,7 +41,7 @@ namespace CustomerApp.API.Controllers
 
             response.Message = "Successfully Create Customer";
             response.StatusCode = (int) HttpStatusCode.OK;
-            
+            response.TransactionId = transactionId;
 
             return Ok(response);
         
@@ -49,11 +51,14 @@ namespace CustomerApp.API.Controllers
 
         public async Task<IActionResult> GetAllCustomer() {
             CommonResponseGetData<IEnumerable<Customer>> response = new CommonResponseGetData<IEnumerable<Customer>>();
+            var transactionId = HttpContext.Items["TransactionId"]?.ToString();
+
 
             IEnumerable<Customer?>? data = await _customerService.GetAllCustomer();
             response.StatusCode = (int) HttpStatusCode.OK;
             response.Data = data;
             response.Message = "Successfully Get Data";
+            response.TransactionId = transactionId;
 
 
 
@@ -65,10 +70,12 @@ namespace CustomerApp.API.Controllers
 
         public async Task<IActionResult> GetCustomerById(int id) {
             CommonResponseGetData<Customer> response = new CommonResponseGetData<Customer>();
+            var transactionId = HttpContext.Items["TransactionId"]?.ToString();
 
             Customer data = await _customerService.GetByIdCustomer(id);
 
             response.StatusCode= (int) HttpStatusCode.OK;
+            response.TransactionId = transactionId;
             response.Data = data;
             response.Message = "Successfully Get Data";
             
@@ -82,6 +89,7 @@ namespace CustomerApp.API.Controllers
         {
 
             CommonResponse response = new CommonResponse();
+            var transactionId = HttpContext.Items["TransactionId"]?.ToString();
 
             Customer customer = new Customer();
             customer.CustomerName = request.CustomerName;
@@ -93,7 +101,7 @@ namespace CustomerApp.API.Controllers
 
             response.Message = "Successfully Update Customer";
             response.StatusCode = (int)HttpStatusCode.OK;
-
+            response.TransactionId= transactionId;
 
             return Ok(response);
 
@@ -104,14 +112,14 @@ namespace CustomerApp.API.Controllers
         public async Task<IActionResult> DeleteCustomerById(int id) {
 
             CommonResponse response = new CommonResponse();
-          
 
+            var transactionId = HttpContext.Items["TransactionId"]?.ToString();
 
             await _customerService.DeleteCustomerById(id);
 
             response.Message = "Successfully Delete Customer";
             response.StatusCode = (int)HttpStatusCode.OK;
-
+            response.TransactionId = transactionId;
 
             return Ok(response);
 
