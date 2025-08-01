@@ -2,350 +2,171 @@
 
 A simple .NET application for managing customer data using layered architecture with Entity Framework Core and PostgreSQL.
 
-
-
 ## Tech Stack
-
-
 
 **Server:** .Net Core, Entity Framework, PostgreSQL
 
-
-
-
-
-\## Environment Variables
-
-
+## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
+`DB_CONNECTION_STRING` your postgreSQL connection
 
+## API Reference
 
-`DB\_CONNECTION\_STRING` your postgreSQL connection
-
-
-
-
-
-\## API Reference
-
-
-
-\#### Create Customer
-
-
+#### Create Customer
 
 ```http
-
-&nbsp; POST /api/v1/Customer/CreateCustomer
-
+  POST /api/v1/Customer/CreateCustomer
 ```
 
-
-
-\- ##### Request
-
-
+- ##### Request
 
 ```json
-
 {
-
-&nbsp; "customerCode": "00005",
-
-&nbsp; "customerName": "AHMAD ILHAM",
-
-&nbsp; "customerAddress": "Jl. Mangga Dua Raya",
-
-&nbsp; "createdBy": 1
-
+  "customerCode": "00005",
+  "customerName": "AHMAD ILHAM",
+  "customerAddress": "Jl. Mangga Dua Raya",
+  "createdBy": 1
 }
-
 ```
 
-\- ##### Response
-
-
+- ##### Response
 
 ```json
-
 {
-
-&nbsp; "message": "Successfully Create Customer",
-
-&nbsp; "statusCode": 200,
-
-&nbsp; "transactionId": "ada55d75-9f59-4fd9-8d8c-82136badfc78"
-
+  "message": "Successfully Create Customer",
+  "statusCode": 200,
+  "transactionId": "ada55d75-9f59-4fd9-8d8c-82136badfc78"
 }
-
 ```
 
-
-
-
-
-\#### Get All Customer
-
-
+#### Get All Customer
 
 ```http
-
-&nbsp; GET /api/v1/Customer/GetAllCustomer
-
+  GET /api/v1/Customer/GetAllCustomer
 ```
 
-
-
-\- ##### Response
-
-
+- ##### Response
 
 ```json
-
 {
-
-&nbsp; "data": \[
-
-&nbsp;   {
-
-&nbsp;     "customerId": 1,
-
-&nbsp;     "customerCode": "000001",
-
-&nbsp;     "customerName": "User Pertama",
-
-&nbsp;     "customerAddress": "Jl. Mangga Dua Raya",
-
-&nbsp;     "createdBy": 1,
-
-&nbsp;     "createdAt": "2025-07-31T17:18:39.047448Z",
-
-&nbsp;     "modifiedBy": null,
-
-&nbsp;     "modifiedAt": null
-
-&nbsp;   },
-
-&nbsp;   {
-
-&nbsp;     "customerId": 2,
-
-&nbsp;     "customerCode": "00002",
-
-&nbsp;     "customerName": "Ilham",
-
-&nbsp;     "customerAddress": "Jl. Mangga Dua Raya",
-
-&nbsp;     "createdBy": 10,
-
-&nbsp;     "createdAt": "2025-07-31T17:45:11.386859Z",
-
-&nbsp;     "modifiedBy": null,
-
-&nbsp;     "modifiedAt": null
-
-&nbsp;   },
-
-&nbsp;   {
-
-&nbsp;     "customerId": 3,
-
-&nbsp;     "customerCode": "00005",
-
-&nbsp;     "customerName": "AHMAD ILHAM",
-
-&nbsp;     "customerAddress": "Jl. Mangga Dua Raya",
-
-&nbsp;     "createdBy": 1,
-
-&nbsp;     "createdAt": "2025-08-01T06:30:43.755695Z",
-
-&nbsp;     "modifiedBy": null,
-
-&nbsp;     "modifiedAt": null
-
-&nbsp;   }
-
-&nbsp; ],
-
-&nbsp; "message": "Successfully Get Data",
-
-&nbsp; "statusCode": 200,
-
-&nbsp; "transactionId": "018ffd74-bc7f-4568-a245-daa4739a6749"
-
+  "data": [
+    {
+      "customerId": 1,
+      "customerCode": "000001",
+      "customerName": "User Pertama",
+      "customerAddress": "Jl. Mangga Dua Raya",
+      "createdBy": 1,
+      "createdAt": "2025-07-31T17:18:39.047448Z",
+      "modifiedBy": null,
+      "modifiedAt": null
+    },
+    {
+      "customerId": 2,
+      "customerCode": "00002",
+      "customerName": "Ilham",
+      "customerAddress": "Jl. Mangga Dua Raya",
+      "createdBy": 10,
+      "createdAt": "2025-07-31T17:45:11.386859Z",
+      "modifiedBy": null,
+      "modifiedAt": null
+    },
+    {
+      "customerId": 3,
+      "customerCode": "00005",
+      "customerName": "AHMAD ILHAM",
+      "customerAddress": "Jl. Mangga Dua Raya",
+      "createdBy": 1,
+      "createdAt": "2025-08-01T06:30:43.755695Z",
+      "modifiedBy": null,
+      "modifiedAt": null
+    }
+  ],
+  "message": "Successfully Get Data",
+  "statusCode": 200,
+  "transactionId": "018ffd74-bc7f-4568-a245-daa4739a6749"
 }
-
 ```
 
-
-
-
-
-\#### Get Customer By ID
-
-
+#### Get Customer By ID
 
 ```http
-
-&nbsp; GET /api/v1/Customer/GetCustomerById/${id}
-
+  GET /api/v1/Customer/GetCustomerById/${id}
 ```
-
-
 
 | Parameter | Type     | Description                       |
-
 | :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
 
-| `id`      | `string` | \*\*Required\*\*. Id of item to fetch |
-
-
-
-\- ##### Response
-
-
+- ##### Response
 
 ```json
-
 {
-
-&nbsp; "data": {
-
-&nbsp;   "customerId": 1,
-
-&nbsp;   "customerCode": "000001",
-
-&nbsp;   "customerName": "User Pertama",
-
-&nbsp;   "customerAddress": "Jl. Mangga Dua Raya",
-
-&nbsp;   "createdBy": 1,
-
-&nbsp;   "createdAt": "2025-07-31T17:18:39.047448Z",
-
-&nbsp;   "modifiedBy": null,
-
-&nbsp;   "modifiedAt": null
-
-&nbsp; },
-
-&nbsp; "message": "Successfully Get Data",
-
-&nbsp; "statusCode": 200,
-
-&nbsp; "transactionId": "2e42e325-082c-48ed-9b0b-9b208ba25352"
-
+  "data": {
+    "customerId": 1,
+    "customerCode": "000001",
+    "customerName": "User Pertama",
+    "customerAddress": "Jl. Mangga Dua Raya",
+    "createdBy": 1,
+    "createdAt": "2025-07-31T17:18:39.047448Z",
+    "modifiedBy": null,
+    "modifiedAt": null
+  },
+  "message": "Successfully Get Data",
+  "statusCode": 200,
+  "transactionId": "2e42e325-082c-48ed-9b0b-9b208ba25352"
 }
-
 ```
 
-
-
-
-
-\#### Update Customer
-
-
+#### Update Customer
 
 ```http
-
-&nbsp; PUT /api/v1/Customer/UpdateCustomer
-
+  PUT /api/v1/Customer/UpdateCustomer
 ```
 
-
-
-\- ##### Request
-
-
+- ##### Request
 
 ```json
-
 {
-
-&nbsp; "customerID": 1,
-
-&nbsp; "customerCode": "021838",
-
-&nbsp; "customerName": "Johnny Deep",
-
-&nbsp; "customerAddress": "Jl. Merdeka",
-
-&nbsp; "modifiedBy": 1
-
+  "customerID": 1,
+  "customerCode": "021838",
+  "customerName": "Johnny Deep",
+  "customerAddress": "Jl. Merdeka",
+  "modifiedBy": 1
 }
-
 ```
 
-\- ##### Response
-
-
+- ##### Response
 
 ```json
-
 {
-
-&nbsp; "message": "Successfully Update Customer",
-
-&nbsp; "statusCode": 200,
-
-&nbsp; "transactionId": "99d839fd-6d31-41be-85f3-46bc72fe0e55"
-
+  "message": "Successfully Update Customer",
+  "statusCode": 200,
+  "transactionId": "99d839fd-6d31-41be-85f3-46bc72fe0e55"
 }
-
 ```
 
-
-
-
-
-
-
-\#### Delete Customer 
-
-
+#### Delete Customer
 
 ```http
-
-&nbsp; DELETE /api/v1/Customer/DeleteCustomerById/${id}
-
+  DELETE /api/v1/Customer/DeleteCustomerById/${id}
 ```
-
-
 
 | Parameter | Type     | Description                       |
-
 | :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
 
-| `id`      | `string` | \*\*Required\*\*. Id of item to fetch |
-
-
-
-\- ##### Response
-
-
+- ##### Response
 
 ```json
-
 {
-
-&nbsp; "message": "Successfully Delete Customer",
-
-&nbsp; "statusCode": 200,
-
-&nbsp; "transactionId": "f45abe77-af65-414f-a4f6-a1c9f4aec300"
-
+  "message": "Successfully Delete Customer",
+  "statusCode": 200,
+  "transactionId": "f45abe77-af65-414f-a4f6-a1c9f4aec300"
 }
-
 ```
-
-
-
-
 
 ## Authors
 
-* [@ahmadelham21](https://www.github.com/ahmadelham21)
+- [@ahmadelham21](https://www.github.com/ahmadelham21)
