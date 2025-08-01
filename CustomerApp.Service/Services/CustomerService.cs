@@ -53,8 +53,8 @@ namespace CustomerApp.Service.Services
             customerToUpdate.ModifiedAt = DateTime.UtcNow;
             customerToUpdate.ModifiedBy = customer.ModifiedBy;
 
-            await _customerRepository.UpdateCustomer(customer);
-   
+            await _customerRepository.UpdateCustomer(customerToUpdate);
+    
         }
     }
 }

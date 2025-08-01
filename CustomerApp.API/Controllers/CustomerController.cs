@@ -95,7 +95,8 @@ namespace CustomerApp.API.Controllers
             customer.CustomerName = request.CustomerName;
             customer.CustomerAddress = request.CustomerAddress;
             customer.CustomerCode = request.CustomerCode;
-            
+            customer.CustomerId = request.CustomerID;
+            customer.ModifiedBy = request.ModifiedBy;
 
             await _customerService.UpdateCustomer(customer);
 

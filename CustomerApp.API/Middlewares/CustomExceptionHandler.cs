@@ -36,9 +36,6 @@ namespace CustomerApp.API.Middlewares
                     errorDetails.Message = notFoundException.Message;
                     break;
 
-          
-                    await context.Response.WriteAsync(JsonSerializer.Serialize(errorDetails));
-                    break;
 
                 default:
                     context.Response.StatusCode = StatusCodes.Status500InternalServerError;         

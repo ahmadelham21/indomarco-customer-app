@@ -9,6 +9,10 @@ namespace CustomerApp.Domain.Dto.Requests
 {
     public class UpdateCustomerRequest
     {
+        [Required(ErrorMessage = "Customer ID tidak boleh kosong.")]
+        public required int CustomerID { get; set; }
+
+
         [Required(ErrorMessage = "Customer Code tidak boleh kosong.")]
         [StringLength(50, ErrorMessage = "Customer Code maksimal 50 karakter.")]
         public required string CustomerCode { get; set; }
@@ -23,7 +27,7 @@ namespace CustomerApp.Domain.Dto.Requests
 
 
         [Required(ErrorMessage = "Modified By tidak boleh kosong.")]
-        public required string ModifiedBy { get; set; }
+        public required int ModifiedBy { get; set; }
 
 
 
